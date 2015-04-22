@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="drupal" default="drupal:config">
+
+  <!-- ## Properties -->
+
+  <property name="drupal.sitedir"       value="${project.basedir}/docroot/sites/default" />
+  <property name="drupal.filesdir"      value="${drupal.sitedir}/files" />
+  <property name="drupal.tmpdir"        value="${drupal.filesdir}/tmp" />
+  <property name="drupal.privatedir"    value="${drupal.sitedir}/private" />
+  <property name="drupal.settings.file" value="${project.basedir}/settings.local.php" />
+
+  <!-- ## Targets -->
+
+  <target name="drupal:config"
+          description="Configures Drupal files and directories."
+          depends="drupal:prepare-dirs, drupal:create-settings-php" />
+
+  <target name="drupal:prepare-dirs"
+          description="Prepares Drupal directories.">
+    <chmod file="${drupal.sitedir}" mode="2775" />
+    <mkdir dir="${drupal.filesdir}" />
+    <chmod file="${drupal.filesdir}" mode="2775" />
+    <mkdir dir="${drupal.tmpdir}" />
+    <chmod file="${drupal.tmpdir}" mode="2775" />
+    <mkdir dir="${drupal.privatedir}" />
+    <chmod file="${drupal.privatedir}" mode="2775" />
+  </target>
+
+  <target name="drupal:create-settings-php"
+          description="Creates a settings.local.php for the project.">
+    <copy file="${drupal.settings.file}"
+          tofile="${drupal.sitedir}/settings.local.php"
+          overwrite="true">
+      <filterchain>
+        <expandproperties />
+      </filterchain>
+    </copy>
+  </target>
+
+</project>

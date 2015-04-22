@@ -1,0 +1,13 @@
+{
+    "name": "jorgegc/phing-drupal",
+    "description": "A collection of targets for Drupal.",
+    "keywords": [
+        "phing"
+    ],
+    "homepage": "https://github.com/jorgegc/phing-drupal",
+    "license": "GPL-2.0+",
+    "support": {
+        "issues": "https://github.com/jorgegc/phing-drupal",
+        "source": "https://github.com/jorgegc/phing-drupal"
+    }
+}
