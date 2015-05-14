@@ -4,10 +4,11 @@
 
   <!-- ## Properties -->
 
-  <property name="drupal.sitedir"       value="${project.basedir}/docroot/sites/default" />
-  <property name="drupal.filesdir"      value="${drupal.sitedir}/files" />
-  <property name="drupal.privatedir"    value="${drupal.filesdir}/private" />
-  <property name="drupal.tmpdir"        value="${drupal.filesdir}/tmp" />
+  <property name="drupal.sites.subdir"  value="default" />
+  <property name="drupal.sites.dir"     value="${project.basedir}/docroot/sites/${drupal.sites.subdir}" />
+  <property name="drupal.files.public"  value="${drupal.sites.dir}/files" />
+  <property name="drupal.files.private" value="${drupal.files.public}/private" />
+  <property name="drupal.files.tmp"     value="${drupal.files.public}/tmp" />
   <property name="drupal.settings.file" value="${project.basedir}/settings.local.php" />
 
   <!-- ## Targets -->
@@ -18,19 +19,19 @@
 
   <target name="drupal:prepare-dirs"
           description="Prepares Drupal directories.">
-    <chmod file="${drupal.sitedir}" mode="2775" />
-    <mkdir dir="${drupal.filesdir}" />
-    <chmod file="${drupal.filesdir}" mode="2775" />
-    <mkdir dir="${drupal.privatedir}" />
-    <chmod file="${drupal.privatedir}" mode="2775" />
-    <mkdir dir="${drupal.tmpdir}" />
-    <chmod file="${drupal.tmpdir}" mode="2775" />
+    <chmod file="${drupal.sites.dir}" mode="2775" />
+    <mkdir dir="${drupal.files.public}" />
+    <chmod file="${drupal.files.public}" mode="2775" />
+    <mkdir dir="${drupal.files.private}" />
+    <chmod file="${drupal.files.private}" mode="2775" />
+    <mkdir dir="${drupal.files.tmp}" />
+    <chmod file="${drupal.files.tmp}" mode="2775" />
   </target>
 
   <target name="drupal:create-settings-php"
           description="Creates a settings.local.php for the project.">
     <copy file="${drupal.settings.file}"
-          tofile="${drupal.sitedir}/settings.local.php"
+          tofile="${drupal.sites.dir}/settings.local.php"
           overwrite="true">
       <filterchain>
         <expandproperties />
