@@ -6,8 +6,8 @@
 
   <property name="drupal.sitedir"       value="${project.basedir}/docroot/sites/default" />
   <property name="drupal.filesdir"      value="${drupal.sitedir}/files" />
+  <property name="drupal.privatedir"    value="${drupal.filesdir}/private" />
   <property name="drupal.tmpdir"        value="${drupal.filesdir}/tmp" />
-  <property name="drupal.privatedir"    value="${drupal.sitedir}/private" />
   <property name="drupal.settings.file" value="${project.basedir}/settings.local.php" />
 
   <!-- ## Targets -->
@@ -21,10 +21,10 @@
     <chmod file="${drupal.sitedir}" mode="2775" />
     <mkdir dir="${drupal.filesdir}" />
     <chmod file="${drupal.filesdir}" mode="2775" />
-    <mkdir dir="${drupal.tmpdir}" />
-    <chmod file="${drupal.tmpdir}" mode="2775" />
     <mkdir dir="${drupal.privatedir}" />
     <chmod file="${drupal.privatedir}" mode="2775" />
+    <mkdir dir="${drupal.tmpdir}" />
+    <chmod file="${drupal.tmpdir}" mode="2775" />
   </target>
 
   <target name="drupal:create-settings-php"
