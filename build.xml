@@ -4,12 +4,12 @@
 
   <!-- ## Properties -->
 
-  <property name="drupal.sites.subdir"  value="default" />
-  <property name="drupal.sites.dir"     value="${project.basedir}/docroot/sites/${drupal.sites.subdir}" />
-  <property name="drupal.files.public"  value="${drupal.sites.dir}/files" />
-  <property name="drupal.files.private" value="${drupal.files.public}/private" />
-  <property name="drupal.files.tmp"     value="${drupal.files.public}/tmp" />
-  <property name="drupal.settings.file" value="${project.basedir}/settings.local.php" />
+  <property name="drupal.sites.subdir"        value="default" />
+  <property name="drupal.sites.dir"           value="${project.basedir}/docroot/sites/${drupal.sites.subdir}" />
+  <property name="drupal.files.public"        value="${drupal.sites.dir}/files" />
+  <property name="drupal.files.private"       value="${drupal.files.public}/private" />
+  <property name="drupal.files.tmp"           value="${drupal.files.public}/tmp" />
+  <property name="drupal.settings.file.local" value="${project.basedir}/settings.local.php" />
 
   <!-- ## Targets -->
 
@@ -30,7 +30,7 @@
 
   <target name="drupal:create-settings-php"
           description="Creates a settings.local.php for the project.">
-    <copy file="${drupal.settings.file}"
+    <copy file="${drupal.settings.file.local}"
           tofile="${drupal.sites.dir}/settings.local.php"
           overwrite="true">
       <filterchain>
