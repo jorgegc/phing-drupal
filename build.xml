@@ -9,6 +9,7 @@
   <property name="drupal.files.public"        value="${drupal.sites.dir}/files" />
   <property name="drupal.files.private"       value="${drupal.files.public}/private" />
   <property name="drupal.files.tmp"           value="${drupal.files.public}/tmp" />
+  <property name="drupal.settings.file"       value="${project.basedir}/settings.php" />
   <property name="drupal.settings.file.local" value="${project.basedir}/settings.local.php" />
 
   <!-- ## Targets -->
@@ -29,7 +30,21 @@
   </target>
 
   <target name="drupal:create-settings-php"
-          description="Creates a settings.local.php for the project.">
+          description="Creates settings.php files for the project.">
+    <if>
+      <not><available file="${drupal.sites.dir}/settings.php" property="drupal.settings.file.exists" /></not>
+      <then>
+        <copy file="${drupal.sites.dir}/default.settings.php"
+              tofile="${drupal.sites.dir}/settings.php">
+          <filterchain>
+            <expandproperties />
+          </filterchain>
+        </copy>
+        <exec command="sed '1s/.*//' ${drupal.settings.file} >> ${drupal.sites.dir}/settings.php"
+              passthru="true"
+              checkreturn="true" />
+      </then>
+    </if>
     <copy file="${drupal.settings.file.local}"
           tofile="${drupal.sites.dir}/settings.local.php"
           overwrite="true">
